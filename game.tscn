@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://del0sdi1ldj5e"]
+
+[ext_resource type="PackedScene" uid="uid://dx3nrfn324ef0" path="res://prefabs/player.tscn" id="1_7cw2a"]
+[ext_resource type="PackedScene" uid="uid://fgsp15nkqgs6" path="res://prefabs/enemy.tscn" id="2_ibqxq"]
+
+[node name="game" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_7cw2a")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="Enemy" parent="." instance=ExtResource("2_ibqxq")]
+position = Vector2(87, 50)
