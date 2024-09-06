@@ -1,12 +1,9 @@
 using Godot;
 using System;
-using System.Diagnostics;
-
-
 
 public partial class Player : CharacterBody2D
 {
-   private int speed = 400;
+   private int speed = 200;
    private PackedScene bullet = GD.Load<PackedScene>("res://prefabs/bullet.tscn");
    private Node projectileRoot;
    private Node2D projectileSpawnPoint;

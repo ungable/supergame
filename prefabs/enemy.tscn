@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://fgsp15nkqgs6"]
+[gd_scene load_steps=4 format=3 uid="uid://fgsp15nkqgs6"]
 
 [ext_resource type="Texture2D" uid="uid://3x83pwxhog84" path="res://icon.svg" id="1_h67gd"]
+[ext_resource type="Script" path="res://scripts/Enemy.cs" id="1_qiy8i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lln85"]
 radius = 11.0
 
 [node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_qiy8i")
 
 [node name="Icon" type="Sprite2D" parent="."]
 modulate = Color(1, 0.25098, 0.25098, 1)
