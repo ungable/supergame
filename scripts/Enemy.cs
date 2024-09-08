@@ -1,30 +1,63 @@
 using Godot;
 using System;
+using System.Xml.Serialization;
 
-public partial class Enemy : CharacterBody2D
+public partial class Enemy : Unit
 {
-   private int maxHealth = 100;
-   private int health = 100;
+   private Player player;
+   private bool canFire = true;
 
-   public void ReceiveDamage(int amount)
+   [Export]
+   private Timer timer;
+   public override void _PhysicsProcess(double delta)
    {
-      if (amount < 0)
+      Move();
+      Rotate();
+      Fire();
+   }
+
+   private void Move()
+   {
+      // var inputDirection = Input.GetVector("left", "right", "up", "down");
+      // Velocity = inputDirection.Normalized() * speed;
+      // MoveAndSlide();
+   }
+
+   private void Rotate()
+   {
+      if (player == null || !Godot.GodotObject.IsInstanceValid(player))
       {
-         throw new ArgumentException("Amount should be positive value", nameof(amount));
+         return;
       }
-      health = Math.Max(0, health - amount);
-      if (health == 0)
+      // var rotationMouse = GetGlobalMousePosition();
+      // LookAt(rotationMouse);
+      LookAt(player.GlobalPosition);
+      Rotation += MathF.PI / -2;
+   }
+
+   private void Fire()
+   {
+      // IsIbstanceValid
+      // GD.Print(player);
+      if (player == null || !Godot.GodotObject.IsInstanceValid(player))
       {
-         QueueFree();
+         return;
+      }
+      if (canFire && player.GlobalPosition.DistanceTo(GlobalPosition) < 150)
+      {
+         CreateProjectile();
+         canFire = false;
+         timer.Start();
       }
    }
 
-   public void Heal(int amount)
+   public void SetPlayer(Player target)
    {
-      if (amount < 0)
-      {
-         throw new ArgumentException("Amount should be positive value", nameof(amount));
-      }
-      health = Math.Min(maxHealth, health + amount);
+      player = target;
+   }
+
+   private void OnTimerTimeout()
+   {
+      canFire = true;
    }
 }

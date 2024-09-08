@@ -17,9 +17,9 @@ public partial class Bullet : RigidBody2D
       var collider = collision?.GetCollider();
       if (collider != null)
       {
-         if (collider is Enemy enemy)
+         if (collider is Unit unit)
          {
-            enemy.ReceiveDamage(damage);
+            unit.ReceiveDamage(damage);
          }
          QueueFree();
       }

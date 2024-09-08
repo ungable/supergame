@@ -1,19 +1,8 @@
 using Godot;
 using System;
 
-public partial class Player : CharacterBody2D
+public partial class Player : Unit
 {
-   private int speed = 200;
-   private PackedScene bullet = GD.Load<PackedScene>("res://prefabs/bullet.tscn");
-   private Node projectileRoot;
-   private Node2D projectileSpawnPoint;
-
-   public override void _Ready()
-   {
-      projectileRoot = GetTree().Root;
-      projectileSpawnPoint = GetNode<Node2D>("Gun/ProjectileSpawnPoint");
-   }
-
    public override void _PhysicsProcess(double delta)
    {
       Move();
@@ -43,12 +32,5 @@ public partial class Player : CharacterBody2D
       }
    }
 
-   private void CreateProjectile()
-   {
-      var projectile = bullet.Instantiate<Bullet>();
-      projectile.Position = projectileSpawnPoint.GlobalPosition;
-      projectile.Rotation = projectileSpawnPoint.GlobalRotation;
-      projectileRoot.AddChild(projectile);
-   }
 }
 

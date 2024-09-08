@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://del0sdi1ldj5e"]
+[gd_scene load_steps=4 format=3 uid="uid://del0sdi1ldj5e"]
 
 [ext_resource type="PackedScene" uid="uid://dx3nrfn324ef0" path="res://prefabs/player.tscn" id="1_7cw2a"]
+[ext_resource type="Script" path="res://scripts/Game.cs" id="1_tcsyc"]
 [ext_resource type="PackedScene" uid="uid://fgsp15nkqgs6" path="res://prefabs/enemy.tscn" id="2_ibqxq"]
 
-[node name="game" type="Node2D"]
+[node name="game" type="Node2D" node_paths=PackedStringArray("player", "enemies")]
+script = ExtResource("1_tcsyc")
+player = NodePath("Player")
+enemies = [NodePath("Enemy"), NodePath("Enemy2"), NodePath("Enemy3")]
 
 [node name="Player" parent="." instance=ExtResource("1_7cw2a")]
 
