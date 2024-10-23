@@ -29,8 +29,8 @@ public partial class Enemy : Unit
       {
          return;
       }
-      // var rotationMouse = GetGlobalMousePosition();
-      // LookAt(rotationMouse);
+      var rotationMouse = GetGlobalMousePosition();
+      LookAt(rotationMouse);
       LookAt(player.GlobalPosition);
       Rotation += MathF.PI / -2;
    }
@@ -43,7 +43,7 @@ public partial class Enemy : Unit
       {
          return;
       }
-      if (canFire && player.GlobalPosition.DistanceTo(GlobalPosition) < 150)
+      if (canFire && player.GlobalPosition.DistanceTo(GlobalPosition) < 15)
       {
          CreateProjectile();
          canFire = false;
